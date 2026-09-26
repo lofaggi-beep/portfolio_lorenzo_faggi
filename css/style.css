@@ -8,8 +8,8 @@
 /* ---------- 1. VARIABILI (design tokens) ----------
    Cambia i colori/font qui e si aggiornano su tutto il sito. */
 :root {
-  --paper: #FFFFFF;       /* sfondo generale, carta chiara */
-  --paper-2: #FFFFFF;     /* sfondo leggermente più scuro (footer, hover) */
+  --paper: #e8e8e6;       /* sfondo generale, carta chiara */
+  --paper-2: #e8e8e6;     /* sfondo leggermente più scuro (footer, hover) */
   --ink: #14140F;         /* testo principale, quasi nero */
   --ink-soft: #959594;    /* testo secondario / didascalie */
   --line: #959594;        /* linee sottili, bordi */
@@ -63,8 +63,12 @@ button:focus-visible {
   justify-content: space-between;
   height: var(--nav-h);
   padding: 0 var(--gap);
-  background: var(--paper);
-  /*border-bottom: 1px solid var(--line);*/
+  background: linear-gradient(
+    to bottom,
+    var(--paper) 0%,
+    color-mix(in srgb, var(--paper) 95%, transparent) 80%,
+    transparent 100%
+  );
 }
 
 .site-logo {
@@ -363,18 +367,31 @@ main .work-body a:focus {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 4rem;
+  align-items: center;      /* ⬅ nuova riga: centra verticalmente le immagini nella riga */
 }
 
 /* Su schermi stretti passa a 1 colonna sola */
 @media (max-width: 700px) {
   .work-media {
     grid-template-columns: 1fr;
+    padding: 0 var(--gap); /* margine laterale su mobile, copertina inclusa */
+  }
+    .work-media .cover {
+    height: 70vh; /* un po' più contenuta su schermi piccoli, modifica a piacere */
   }
 }
+
+
 
 .work-media figure {
   margin: 0;
   /* niente bordo: rimosso apposta rispetto a prima */
+}
+
+.work-media figure:not(.media-full) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .work-media img {
@@ -390,6 +407,27 @@ main .work-body a:focus {
 .work-media .media-full {
   grid-column: 1 / -1;
 }
+
+.work-media .cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - var(--nav-h));
+  margin-bottom: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.work-media .cover img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  margin: 0 auto;
+}
+
 
 .work-body {
   max-width: 720px;

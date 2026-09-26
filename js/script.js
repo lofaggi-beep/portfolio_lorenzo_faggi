@@ -143,7 +143,7 @@ function costruisciGalleria(lavoro) {
 
   // 1. Se c'è un'immagine di copertina, la mostra SEMPRE per prima a tutta larghezza
   if (lavoro.copertina) {
-    html += `<figure class="media-full"><img src="${lavoro.copertina}" alt="${lavoro.titolo}"></figure>`;
+    html += `<figure class="media-full cover"><img src="${lavoro.copertina}" alt="${lavoro.titolo}"></figure>`;
   }
 
   // 2. Se c'è un video Vimeo, lo inserisce subito dopo
